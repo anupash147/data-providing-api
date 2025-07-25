@@ -64,7 +64,7 @@ check-dataform: check-gcp-auth
 # Initialize Dataform project if missing
 defaultDatabase = $(GOOGLE_CLOUD_PROJECT)
 init-dataform:
-	npx dataform init
+	npx dataform init bigquery --default-database=$(GOOGLE_CLOUD_PROJECT) --default-location=us-central1
 	@echo "Dataform project initialized. Please update dataform.json with your project details if needed."
 
 # Ensure local Dataform files (and optionally GCP repo) exist
@@ -103,7 +103,7 @@ compile: check-gcp-auth check-dataform zip-dataform
 # Run Dataform workflow using open-source CLI
 run: check-gcp-auth check-dataform
 	@echo "Running Dataform workflow..."
-	npx dataform run --project-id=$${GOOGLE_CLOUD_PROJECT}
+	npx dataform run
 
 # Compile and run Dataform workflow
 update-table: compile run
