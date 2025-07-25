@@ -1,0 +1,11 @@
+{
+  "warehouse": "bigquery",
+  "defaultSchema": "dataform_usa_names",
+  "defaultDatabase": "learning-gcp-457917",
+  "defaultLocation": "us-central1",
+  "assertionsSchema": "dataform_assertions",
+  "projectConfig": {},
+  "vars": {
+    "dataset_name": "usa_names_data"
+  }
+} 

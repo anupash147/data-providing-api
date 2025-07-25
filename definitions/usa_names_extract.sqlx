@@ -1,0 +1,19 @@
+config {
+  type: "table",
+  description: "USA names data with incremental loading of 10 rows at a time",
+  schema: "dataform_usa_names"
+}
+
+-- Incremental table that loads 10 rows at a time
+SELECT 
+  gender,
+  state,
+  CAST(year AS INTEGER) as year,
+  name,
+  -- Add a row number for incremental processing
+  ROW_NUMBER() OVER (ORDER BY year, state, name) as row_id
+FROM `bigquery-public-data.usa_names.usa_1910_2013`
+WHERE ROW_NUMBER() OVER (ORDER BY year, state, name) <= 
+  (SELECT COALESCE(MAX(row_id), 0) + 10 FROM ${self()})
+ORDER BY year, state, name
+LIMIT 10 

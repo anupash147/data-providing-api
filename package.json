@@ -1,0 +1,17 @@
+{
+  "name": "usa-names-data-api",
+  "version": "1.0.0",
+  "description": "Dataform project for USA names data extraction",
+  "main": "dataform.yaml",
+  "scripts": {
+    "compile": "dataform compile",
+    "run": "dataform run",
+    "test": "dataform test"
+  },
+  "dependencies": {
+    "@dataform/core": "^2.0.0"
+  },
+  "devDependencies": {
+    "@dataform/cli": "^2.0.0"
+  }
+} 

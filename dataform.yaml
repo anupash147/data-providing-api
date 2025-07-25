@@ -1,0 +1,35 @@
+version: "1.0"
+project: "usa-names-data-api"
+defaultDatabase: "learning-gcp-457917"
+defaultSchema: "dataform_usa_names"
+assertionsSchema: "dataform_assertions"
+
+vars:
+  # Add any project-wide variables here
+  dataset_name: "usa_names_data"
+
+tables:
+  - name: "usa_names_extract"
+    description: "Extracted USA names data with incremental loading"
+    schema:
+      columns:
+        - name: "gender"
+          type: "STRING"
+          description: "Gender of the person"
+        - name: "state"
+          type: "STRING"
+          description: "State where the name was recorded"
+        - name: "year"
+          type: "INTEGER"
+          description: "Year of the record"
+        - name: "name"
+          type: "STRING"
+          description: "Name of the person"
+    sql: |
+      SELECT 
+        gender,
+        state,
+        CAST(year AS INTEGER) as year,
+        name
+      FROM `bigquery-public-data.usa_names.usa_1910_2013`
+      LIMIT 5 
