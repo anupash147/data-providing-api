@@ -1,7 +1,7 @@
 version: "1.0"
 project: "usa-names-data-api"
 defaultDatabase: "learning-gcp-457917"
-defaultSchema: "dataform_usa_names"
+defaultSchema: "dataform"
 assertionsSchema: "dataform_assertions"
 
 vars:
