@@ -1,7 +1,8 @@
 config {
   type: "table",
   description: "USA names data with incremental loading of 10 rows at a time",
-  schema: "dataform"
+  schema: "dataform",
+  location: "US"
 }
 
 -- Incremental table that loads 10 rows at a time

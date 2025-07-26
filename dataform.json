@@ -2,7 +2,7 @@
   "warehouse": "bigquery",
   "defaultSchema": "dataform",
   "defaultDatabase": "learning-gcp-457917",
-  "defaultLocation": "us-central1",
+  "defaultLocation": "US",
   "assertionsSchema": "dataform_assertions",
   "projectConfig": {},
   "vars": {
