@@ -11,13 +11,21 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 # Initialize BigQuery client
-client = bigquery.Client()
+GCP_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+if GCP_CREDENTIALS and os.path.exists(GCP_CREDENTIALS):
+    client = bigquery.Client.from_service_account_json(GCP_CREDENTIALS)
+else:
+    try:
+        client = bigquery.Client()
+    except Exception as e:
+        logger.error("Google Cloud credentials not found. Please set the GOOGLE_APPLICATION_CREDENTIALS environment variable.")
+        raise e
 
 def build_query(filters: Dict[str, str]) -> str:
     """Build SQL query with filters"""
     base_query = """
     SELECT gender, state, year, name
-    FROM `dataform-project.dataform_usa_names.usa_names_extract`
+    FROM `learning-gcp-457917.dataform.usa_names_extract`
     WHERE 1=1
     """
     

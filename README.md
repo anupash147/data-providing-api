@@ -55,6 +55,7 @@ make update-table
 pip install -r requirements.txt
 
 # Run the API locally
+export GOOGLE_APPLICATION_CREDENTIALS=/your/path/service-account-credentials.json
 python app.py
 
 # Run tests
@@ -68,6 +69,10 @@ pytest test_app.py -v
 docker build -t usa-names-api .
 
 # Run the container
+docker run -p 8080:8080 \
+  -v ~/projects/bq-data-viewer-role.json:/app/gcp-key.json \
+  -e GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json \
+  usa-names-api
 docker run -p 8080:8080 usa-names-api
 ```
 
